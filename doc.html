@@ -116,9 +116,9 @@
       </div>
       <div class="uk-width-1-1 uk-width-expand@m">
         <article class="uk-article">
-          <h1 class="uk-article-title">Template setup</h1>
+         <!--  <h1 class="uk-article-title">Template setup</h1>
           <p class="uk-text-lead uk-text-muted">This document covers the setup and options of theme feature described in
-            the doc title</p>
+            the doc title</p> -->
           <div class="uk-article-meta uk-margin-top uk-margin-medium-bottom uk-flex uk-flex-middle">
             <img class="uk-border-circle avatar" src="img/avatar-sara.png"
               alt="Sara Galen">
@@ -129,12 +129,12 @@
             </div>
           </div>
           <div class="article-content link-primary">
-            <p>Still too and presented. Eyes workers, and a just that chosen proportion your it exploration, joke. 
+         <!--    <p>Still too and presented. Eyes workers, and a just that chosen proportion your it exploration, joke. 
               Of beacon because phase pouring state into them. Either one for been sublime parts global of postage 
               enjoying those it can the privilege a and, soon up privilege is the to the card blind to feel borne 
               more, you of for its always sort listen. Of woke show have by mental okay. By accept with and worthy 
-              to uneasiness, snow avoid part the remedies.</p>
-            <div class="language-bash highlighter-rouge">
+              to uneasiness, snow avoid part the remedies.</p> -->
+          <!--   <div class="language-bash highlighter-rouge">
               <div class="highlight">
                 <pre class="highlight"><code>bundle install</code></pre>
               </div>
@@ -168,15 +168,14 @@
               </a>
               <figcaption data-uk-grid class="uk-flex-right uk-grid uk-grid-stack"><span
                   class="uk-width-auto uk-first-column">Image in lightbox</span></figcaption>
-            </figure>
-            <p>Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit.
+            </figure> -->
+           <!--  <p>Etiam vestibulum risus vel arcu elementum eleifend. Cras at dolor eget urna varius faucibus tempus in elit.
               Cras a dui imperdiet, tempus metus quis, pharetra turpis. Phasellus at massa sit amet ante semper fermentum
-              sed eget lectus. Quisque id dictum magna, et dapibus turpis.</p>
-            <h2 id="example-of-code-block">Example Of Code Block</h2>
-            <p>In accumsan lacus ac neque maximus dictum. Phasellus eleifend leo id mattis bibendum. Curabitur et purus
-              turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+              sed eget lectus. Quisque id dictum magna, et dapibus turpis.</p> -->
+            <h2 id="example-of-code-block">Código sugerido para implementar paginación</h2>
+            <p></p>
             <div class="language-html highlighter-rouge">
-              <div class="highlight">
+            <!--   <div class="highlight">
 <pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
 	<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
 	<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span>
@@ -186,7 +185,46 @@
 	<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/assets/js/main.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
 </code></pre>
-              </div>
+              </div> -->
+              <div class="highlight">
+  <pre class="highlight"><code>
+    <span class="kd">articulos.getcatalogo</span> <span class="o">=</span> <span class="kd">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="kd">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">{</span> <span class="nx">clcodigo</span><span class="p">,</span> <span class="nx">page</span><span class="p">,</span> <span class="nx">pageSize</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">;</span>
+      <span class="kd">const</span> <span class="nx">listaprecio</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+      <span class="kd">const</span> <span class="nx">offset</span> <span class="o">=</span> <span class="p">(</span><span class="nx">page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">pageSize</span><span class="p">;</span>
+      <span class="kd">let</span> <span class="nx">query</span> <span class="o">=</span> <span class="s">"SELECT arcodigo, arnombre, arunidad, arfamilia, ariva, "</span><span class="p">;</span>
+      <span class="kd">switch</span> <span class="p">(</span><span class="nx">listaprecio</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">case</span> <span class="s">"1"</span><span class="p">:</span>
+          <span class="nx">query</span> <span class="o">+=</span> <span class="s">"arprecio1 as arprecio, ardescuento1 as ardescuento, arsugerido1 as arsugerido "</span><span class="p">;</span>
+          <span class="kd">break</span><span class="p">;</span>
+        <span class="kd">case</span> <span class="s">"2"</span><span class="p">:</span>
+          <span class="nx">query</span> <span class="o">+=</span> <span class="s">"arprecio2 as arprecio, ardescuento2 as ardescuento, arsugerido2 as arsugerido "</span><span class="p">;</span>
+          <span class="kd">break</span><span class="p">;</span>
+        <span class="kd">case</span> <span class="s">"3"</span><span class="p">:</span>
+          <span class="nx">query</span> <span class="o">+=</span> <span class="s">"arprecio3 as arprecio, ardescuento3 as ardescuento, arsugerido3 as arsugerido "</span><span class="p">;</span>
+          <span class="kd">break</span><span class="p">;</span>
+        <span class="kd">case</span> <span class="s">"4"</span><span class="p">:</span>
+          <span class="nx">query</span> <span class="o">+=</span> <span class="s">"arprecio4 as arprecio, ardescuento4 as ardescuento, arsugerido4 as arsugerido "</span><span class="p">;</span>
+          <span class="kd">break</span><span class="p">;</span>
+        <span class="kd">case</span> <span class="s">"5"</span><span class="p">:</span>
+          <span class="nx">query</span> <span class="o">+=</span> <span class="s">"arprecio5 as arprecio, ardescuento5 as ardescuento, arsugerido5 as arsugerido "</span><span class="p">;</span>
+          <span class="kd">break</span><span class="p">;</span>
+        <span class="kd">default</span><span class="p">:</span>
+          <span class="nx">query</span> <span class="o">+=</span> <span class="s">"arprecio1 as arprecio, ardescuento1 as ardescuento, arsugerido1 as arsugerido "</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">query</span> <span class="o">+=</span> <span class="s">"FROM api_articulos LIMIT ?, ?"</span><span class="p">;</span>
+      <span class="nx">pool</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">offset</span><span class="p">,</span> <span class="nx">parseInt</span><span class="p">(</span><span class="nx">pageSize</span><span class="p">)]</span><span class="p">,</span> <span class="kd">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">rows</span><span class="kd">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+        <span class="kd">else</span> <span class="p">{</span>
+          <span class="nb">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+          <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+    <span class="p">};</span>
+  </code></pre>
+</div>
+
             </div>
             <h2 id="text-and-quote">Text and Quote</h2>
             <p>Cras at dolor eget urna varius faucibus tempus in elit. Cras a dui imperdiet, tempus metus quis, pharetra
